@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Citizen\CitizenController;
 use App\Http\Controllers\MedicalStaff\AuthController;
 use App\Http\Controllers\Institution\InstitutionController;
+use App\Http\Controllers\Role\RoleController;
 
 Route::get('/', [CitizenController::class, 'index']);
-
 
 //* Authentication Routes
 
@@ -31,7 +31,28 @@ Route::post('/health-institution/status', [InstitutionController::class, 'Verifi
 
 Route::get('/health-institution/status', [InstitutionController::class, 'showVerificationStatus']);
 
-
-
 Route::post('/health-institution', [InstitutionController::class, 'store']);
 
+
+// * Restricted Access
+
+Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);
+
+Route::get('/health-institution/{institution_id}/details', [InstitutionController::class, 'showInstitutionDetail']);
+
+Route::patch('/verification-request/update-status/{institution_id}', [InstitutionController::class, 'updateStatus']);
+
+Route::patch('/verification-request/reject/{institution_id}', [InstitutionController::class, 'rejectStatus']);
+
+
+//* Roles
+
+Route::get('/roles', [RoleController::class, 'showRole']);
+
+Route::get('/create-roles', [RoleController::class, 'showCreateRoleForm']);
+Route::post('/create-roles', [RoleController::class, 'storeRole']);
+
+Route::get('/update-roles', [RoleController::class, 'showEditRoleForm']);
+Route::patch('/update-roles', [RoleController::class, 'updateForm']);
+
+Route::delete('/delete-role', [RoleController::class, 'destoryRoleData']);

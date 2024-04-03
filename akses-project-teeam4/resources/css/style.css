@@ -1153,7 +1153,10 @@ body {
     background-color: #019F90 !important;
     color: white !important;
     box-shadow:none;
-  
+    font-weight: 500;
+    text-transform: capitalize;
+    box-shadow: none;
+    border: none;
   }
   
   a.back-btn:hover {

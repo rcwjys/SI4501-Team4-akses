@@ -12,7 +12,6 @@
 <main>
   <main>
     <div class="container mt-5">
-
         @if(Session::has('ticket-request-success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ Session::get('ticket-request-success')}}
@@ -21,7 +20,6 @@
                 </button>
             </div>
         @endif
-
         <div class="card">
             <div class="card-header text-capitalize">
                 formulir Pengajuan Verifikasi Institusi Kesehatan 
@@ -29,7 +27,7 @@
             <form action="" method="POST" class="px-5 py-5" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Kode Tiket</label>
-                    <input type="text" value="{{Session::get('resultData')['ticket']}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  disabled>
+                    <input type="text" value="{{Session::get('resultData')['ticket']}}" class="form-control fw-bold" id="exampleInputEmail1" aria-describedby="emailHelp"  disabled>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama Institusi</label>

@@ -35,7 +35,6 @@
                     <label for="exampleInputEmail1">Status Institusi</label>
                     <input type="text" value="{{$institution->institution_status}}" placeholder="Contoh: Apotek Karya Medika" class="form-control text-uppercase" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
                 </div>
-
                 <a href="{{url('/health-institution/check-status')}}" class="btn btn-primary mt-5 mr-3 back-btn">Kembali</a>
             </form>
         </div>
