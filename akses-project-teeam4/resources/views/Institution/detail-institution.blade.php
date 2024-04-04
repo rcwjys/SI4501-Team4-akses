@@ -87,5 +87,5 @@
                     </form>
                 </div>
             </div>
-
-        @endsection
+    </main>
+@endsection

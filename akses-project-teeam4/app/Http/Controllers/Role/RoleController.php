@@ -5,11 +5,19 @@ namespace App\Http\Controllers\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use \Illuminate\Validation\ValidationException;
 
 use App\Models\Role;
 
 class RoleController extends Controller
 {
+
+    public function showDetailRole(Request $request)
+    {
+        $role = Role::find($request->role_id);
+        return view('Admin.Role.role-details', ['role' => $role]);
+    }
+
     public function showRole()
     {
         $roles = Role::all()->sortByDesc('created_at',);
@@ -38,23 +46,38 @@ class RoleController extends Controller
             Session::flash('success-to-create-role', 'Role ' . $roleData['role_name'] . ' Berhasil Dibuat');
 
             return back();
-        } catch (\Illuminate\Validation\ValidationException $error) {
+        } catch (ValidationException $error) {
             dd($error);
         }
     }
 
-    public function showEditRoleForm()
+    public function showEditRoleForm(Request $request)
     {
-        // Todo
+        $role = Role::find($request->role_id);
+        return view('Admin.Role.edit-role', ['role' => $role]);
     }
 
-    public function updateForm()
+    public function updateForm(Request $request)
     {
-        // Todo
+        try {
+            $role = Role::find($request->role_id);
+            $role->role_name = $request->role_name;
+            $role->role_desc = $request->role_desc;
+            $role->update();
+
+            Session::flash('success-to-update-role', 'Role ' . $role->role_name . ' Berhasil Di Update');
+            return redirect(url('/roles/' . $role->role_id . '/details'));
+        } catch (ValidationException $error) {
+            Session::flash('fail-to-update-role', 'Role ' . $role->role_name . ' Tidak Berhasil Di Update');
+            return back();
+        }
     }
 
-    public function destoryRoleData()
+    public function destoryRoleData(Request $request)
     {
-        // Todo
+        $role = Role::find($request->role_id);
+        $role->delete();
+        Session::flash('success-to-delete-role', 'Role ' . $role->role_name . ' Berhasil Dihapus');
+        return redirect(url('/roles'));
     }
 }
