@@ -39,6 +39,12 @@
 </head>
 
 <body>
+    <!-- Livewire Styles -->
+    @livewireStyles
+
+    <!-- Livewire Scripts -->
+    @livewireScripts
+
     @include('src.Partials.header')
 
     @yield('content')

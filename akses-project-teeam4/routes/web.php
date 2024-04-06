@@ -22,7 +22,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 //* Institution Routes
 
-Route::get('/health-institution', [InstitutionController::class, 'showInstitutionForm'])->name('institution');
+Route::get('/health-institution/request', [InstitutionController::class, 'showInstitutionForm'])->name('institution');
 
 Route::get('/health-institution/verification', [InstitutionController::class, 'showVerificationInfo']);
 
@@ -43,6 +43,15 @@ Route::get('/health-institution/{institution_id}/details', [InstitutionControlle
 Route::patch('/verification-request/update-status/{institution_id}', [InstitutionController::class, 'updateStatus']);
 
 Route::patch('/verification-request/reject/{institution_id}', [InstitutionController::class, 'rejectStatus']);
+
+Route::get('/health-institution/{institution_id}/more-details', [InstitutionController::class, 'InstitutionMoreDetail']);
+
+Route::get('/health-institution', [InstitutionController::class, 'showInstitutions']);
+
+Route::get('/health-institution/{institution_id}/edit', [InstitutionController::class, 'showEditInstitutionForm']);
+Route::patch('/health-institution/{institution_id}/update', [InstitutionController::class, 'updateInstitutionData']);
+
+Route::delete('/health-institution/{institution_id}/delete', [InstitutionController::class, 'destroyInstitution']);
 
 
 //* Roles
