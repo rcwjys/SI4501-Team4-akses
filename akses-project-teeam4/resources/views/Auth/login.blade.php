@@ -57,10 +57,12 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="login-container">
-                        @if (session()->has('registerProcessMessage'))
+                        @if (Session::has('success-to-register'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('registerProcessMessage') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                {{ Session::get('success-to-register') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         @endif
 

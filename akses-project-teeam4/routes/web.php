@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Citizen\CitizenController;
-use App\Http\Controllers\MedicalStaff\AuthController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Role\RoleController;
+use App\Http\Controllers\Staff\StaffController;
 
 Route::get('/', [CitizenController::class, 'index']);
 
@@ -18,6 +19,14 @@ Route::get('/register', [AuthController::class, 'showRegisterForm']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/logout', [AuthController::class, 'logout']);
+
+// * Medical Staff
+
+Route::get('/employee-request', [StaffController::class, 'showRequestForm']);
+Route::post('/employee-request', [StaffController::class, 'storeTicket']);
+
+Route::get('/medical-staffs', [StaffController::class, 'showStaffRequest']);
+
 
 
 //* Institution Routes
